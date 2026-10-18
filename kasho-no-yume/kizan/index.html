@@ -1,0 +1,391 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>帰山｜十二国記・Audibleのお供</title><style>
+:root{--paper:#f7f4eb;--ink:#293e3b;--sub:#62736c;--line:#d8ddd0;--card:#fffdf8;
+--tai:#986b59;--tai-bg:#fbf3ec;--kei:#426c61;--kei-bg:#eff5ef;--en:#4d6a86;--en-bg:#eef2f7;--han:#7a6489;--han-bg:#f4f0f6;--hou:#a07c3c;--hou-bg:#faf5e9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Gothic","YuGothic","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;line-height:1.7}
+header,main,footer{max-width:1180px;margin:auto;padding:16px 24px}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.1em}
+.brand{font-weight:bold}.tag{font-size:11px;border:1px solid #b9c9bf;border-radius:20px;padding:3px 10px}
+.intro{padding:14px 0 6px}.eyebrow{font-size:12px;color:var(--kei);letter-spacing:.2em}
+h1{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Noto Serif JP",serif;font-size:34px;margin:2px 0;font-weight:500;letter-spacing:.12em}
+h1 small{font-family:inherit;font-size:13px;letter-spacing:.05em;color:var(--sub);margin-left:10px;font-family:"Yu Gothic",sans-serif}
+.lead{font-size:14px;color:#5c6c64;margin:4px 0}
+h2{font-size:20px;margin:0 0 6px}
+.small{font-size:12px;color:var(--sub)}
+a{color:var(--kei)}
+
+/* 凡例 */
+.howto{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--sub);margin:10px 0 0;padding:8px 12px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.howto b{color:var(--ink)}
+.howto .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+
+/* 地図 */
+.map{position:relative;margin-top:12px;display:grid;gap:56px 96px;
+ grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr);
+ grid-template-areas:"tai kei en" "tai kei han" "tai kei hou";align-items:start}
+#lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.country{position:relative;z-index:1;border-radius:16px;padding:12px 14px 14px;border:1.5px solid;background:var(--card)}
+.country h2{display:flex;align-items:baseline;gap:8px;font-size:19px;margin:0 0 2px}
+.country h2 .k{font-family:"Yu Mincho","Noto Serif JP",serif;font-size:26px;font-weight:600}
+.country .note{font-size:11px;color:var(--sub);margin:0 0 8px;line-height:1.5}
+#tai{grid-area:tai;border-color:var(--tai);background:var(--tai-bg);border-style:dashed}
+#kei{grid-area:kei;border-color:var(--kei);background:var(--kei-bg);border-width:2.5px}
+#en{grid-area:en;border-color:var(--en);background:var(--en-bg)}
+#han{grid-area:han;border-color:var(--han);background:var(--han-bg)}
+#hou{grid-area:hou;border-color:var(--hou);background:var(--hou-bg)}
+#tai .k{color:var(--tai)}#kei .k{color:var(--kei)}#en .k{color:var(--en)}#han .k{color:var(--han)}#hou .k{color:var(--hou)}
+.pastbadge{font-size:10px;color:#fff;background:var(--tai);border-radius:10px;padding:1px 8px;letter-spacing:.05em;white-space:nowrap}
+.nowbadge{font-size:10px;color:#fff;background:var(--kei);border-radius:10px;padding:1px 8px;letter-spacing:.05em;white-space:nowrap}
+
+/* 王と麒麟 */
+.pair{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:4px;margin:4px 0 10px}
+.bond{font-size:10px;color:var(--sub);text-align:center;line-height:1.3;padding:0 2px}
+.bond:before{content:"";display:block;width:26px;height:0;border-top:3px double currentColor;margin:0 auto 3px}
+.sub2{font-size:11px;color:var(--sub);margin:-4px 0 8px}
+
+/* 人物ボタン */
+.p{display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;background:#fff;border:1px solid #d6dcd2;border-radius:9px;padding:5px 9px;line-height:1.35;transition:opacity .2s,box-shadow .2s,transform .2s}
+.p:hover{border-color:#8aa596;box-shadow:0 2px 8px #2b443a18}
+.p:focus-visible{outline:3px solid #b98635;outline-offset:2px}
+.p .n{font-family:"Yu Mincho","Noto Serif JP",serif;font-size:17px;font-weight:600}
+.p .r{font-size:10.5px;color:var(--sub);margin-left:5px;white-space:nowrap;display:inline-block}
+.p .j{display:block;font-size:10.5px;color:#4f625a}
+.p .jy{display:block;font-size:9.5px;color:#7f9088;letter-spacing:.02em;line-height:1.3}
+.p.big .jy{font-size:10.5px}
+.p .alias{display:inline-block;font-size:10px;background:#fff3c9;border:1px solid #e6cf86;color:#6b5420;border-radius:6px;padding:0 5px;margin-top:2px}
+.p .link{display:inline-block;font-size:10px;color:var(--en);margin-top:2px}
+.p.big{padding:8px 11px;border-width:1.5px}
+.p.big .n{font-size:24px}
+.p.big .j{font-size:11.5px}
+.p.hero{border-width:2.5px;box-shadow:0 4px 14px #2b443a1f}
+.p.hero .n{font-size:28px}
+#tai .p.hero{border-color:var(--tai)}#kei .p.hero{border-color:var(--kei)}
+.p.king .j:before{content:"王 · "}
+.p.kirin .j:before{content:"麒麟 · "}
+.herorow{margin:0 0 10px}
+.herolabel{font-size:11px;color:var(--tai);font-weight:bold;margin-bottom:3px}
+
+/* 役割の段 */
+.tier{margin-top:8px}
+.tier h3{font-size:11.5px;margin:0 0 4px;color:var(--sub);font-weight:bold;display:flex;align-items:center;gap:6px}
+.tier h3:after{content:"";flex:1;border-top:1px solid #d0d6cc}
+.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.mini{font-size:11px;color:var(--sub);margin:6px 0 0;line-height:1.5}
+
+/* ハイライト */
+.map.focus .p{opacity:.28}
+.map.focus .p.on,.map.focus .p.rel{opacity:1}
+.p.on{box-shadow:0 0 0 3px #b98635;transform:scale(1.02)}
+.p.rel{box-shadow:0 0 0 2px #e0b867}
+.map.focus .lab{opacity:.25}.map.focus .lab.on{opacity:1}
+
+/* 線のラベル */
+.lab{position:absolute;z-index:3;transform:translate(-50%,-50%);font-size:11.5px;font-weight:bold;background:var(--paper);border:1.5px solid currentColor;border-radius:14px;padding:1px 9px;white-space:nowrap;pointer-events:none;transition:opacity .2s}
+
+/* 詳細パネル */
+#panel{visibility:hidden;position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);width:min(560px,calc(100% - 24px));background:#fff;border:1px solid #c8d3c9;border-radius:16px;box-shadow:0 12px 40px #1d2f2a33;padding:14px 18px 14px;z-index:20;transition:transform .25s}
+#panel.show{transform:translate(-50%,0);visibility:visible}
+#panel .pn{font-family:"Yu Mincho","Noto Serif JP",serif;font-size:26px;font-weight:600}
+#panel .pr{font-size:12px;color:var(--sub);margin-left:8px}
+#panel .pc{display:inline-block;font-size:11px;border-radius:10px;padding:0 8px;color:#fff;margin-left:8px;vertical-align:4px}
+#panel .pj{font-size:13px;background:#eef3ec;display:inline-block;border-radius:12px;padding:1px 10px;margin:4px 0}
+#panel .pd{font-size:14px;margin:6px 0 0}
+#panel .pl{font-size:12px;margin-top:8px;color:var(--sub)}
+#panel .pl button{font:inherit;font-size:12px;cursor:pointer;background:#fff7df;border:1px solid #e6cf86;border-radius:10px;padding:1px 8px;margin:2px 4px 0 0;color:var(--ink)}
+#panel .x{position:absolute;right:10px;top:8px;font:inherit;font-size:20px;line-height:1;border:0;background:none;cursor:pointer;color:var(--sub);padding:6px}
+
+/* 下の補足 */
+.section{padding-top:30px}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.term{padding:10px 14px;border-radius:12px;background:#e9eee3;font-size:13px;line-height:1.6}
+.term strong{font-size:14px}
+.ai{background:#e7eee7;border-radius:20px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px}
+.ai h2{line-height:1.5}.ai p{font-size:14px}
+.questions{display:grid;gap:7px}
+.question{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:44px;text-align:left;background:#fffdf8;color:var(--ink);border:1px solid #c7d5c8;border-radius:10px;padding:10px 12px;line-height:1.6;font:inherit;font-size:14px;cursor:pointer}
+.question small{font-size:10px;white-space:nowrap;color:#617367}.question:hover{background:#f0f6ed;border-color:var(--kei)}
+.openai{display:inline-block;margin-top:12px;padding:8px 16px;background:var(--kei);color:white;border-radius:22px;text-decoration:none;font-size:13px}
+.status{font-size:12px;min-height:22px}.status:empty{display:none}.status:not(:empty){padding:8px 0;color:#345849}
+.flow{display:none}
+.disclaimer{margin:20px 0 8px;padding:12px 14px;border-left:2px solid #b9c9b5}
+footer{font-size:12px;color:#63746a;border-top:1px solid var(--line);margin-top:24px;padding-bottom:120px}
+
+/* タブレット：2列 */
+@media(max-width:1020px){
+ .map{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"tai kei" "tai en" "han hou";gap:44px 44px}
+}
+/* スマホ：縦に流れる */
+@media(max-width:640px){
+ header{padding:10px 14px}main{padding:8px 14px}
+ h1{font-size:27px}h1 small{display:block;margin:0}
+ .lead{font-size:12.5px}
+ .howto{font-size:11px;gap:4px 12px;padding:7px 10px}
+ .map{grid-template-columns:minmax(0,1fr);grid-template-areas:"tai" "f1" "kei" "f2" "en" "han" "hou";gap:0}
+ #lines,.lab{display:none}
+ .country{display:flex;flex-direction:column;margin-bottom:14px}
+ #tai .herorow{order:9;margin:10px 0 0}
+ .flow{display:flex;flex-direction:column;align-items:center;margin:-14px 0 0;padding:4px 0 6px;font-size:12px;font-weight:bold;line-height:1.4}
+ .flow:before,.flow:after{content:"";width:0;height:12px;border-left:3px solid currentColor}
+ .flow:after{height:0;width:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid currentColor}
+ .flow span{border:1.5px solid currentColor;border-radius:14px;padding:2px 12px;background:var(--paper)}
+ #f1{grid-area:f1;color:var(--tai)}#f2{grid-area:f2;color:var(--en)}
+ .country{padding:10px 10px 12px}
+ .p .n{font-size:16px}.p.big .n{font-size:21px}.p.hero .n{font-size:24px}
+ .terms{grid-template-columns:1fr 1fr}.term{font-size:12px;padding:9px 10px}
+ .ai{display:block;padding:16px}.ai>div+div{margin-top:14px}.ai h2 br{display:none}
+ .question{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.p,#panel,.lab{transition:none}}
+
+.intro{position:relative;padding-right:180px}
+.cover{position:absolute;right:0;top:4px;width:160px;height:auto}
+.ic{width:30px;height:30px;flex:none;align-self:center;margin-right:-2px}
+#tai .ic{color:var(--tai)}#kei .ic{color:var(--kei)}#en .ic{color:var(--en)}#han .ic{color:var(--han)}#hou .ic{color:var(--hou)}
+ruby rt{font-size:8.5px;color:#73857c;font-weight:normal;letter-spacing:0;font-family:"Yu Gothic",sans-serif}
+.tier h3 ruby rt{font-size:8px}
+#panel .pj ruby rt{font-size:10px}
+.finder{margin-top:14px;background:#fff;border:1.5px solid #b9cdbf;border-radius:16px;padding:14px 16px}
+.fhead{display:flex;gap:12px;align-items:center}
+.fhead h2{font-size:18px;margin:0}.fhead p{margin:0}
+.hp{width:46px;height:46px;color:var(--kei);flex:none;background:#e7f0e8;border-radius:50%;padding:5px}
+#q{display:block;width:100%;margin-top:10px;font:inherit;font-size:18px;padding:10px 14px;border:1.5px solid #9db5a6;border-radius:12px;background:#fbfdf9;color:var(--ink)}
+#q:focus{outline:3px solid #e0b867;outline-offset:1px;border-color:var(--kei)}
+.ex{font-size:12px;color:var(--sub);margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ex button{font:inherit;font-size:12px;cursor:pointer;background:#eef3ec;border:1px solid #c7d5c8;border-radius:14px;padding:2px 10px;color:var(--ink)}
+#results:not(:empty){margin-top:10px}
+.hit{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;width:100%;text-align:left;font:inherit;cursor:pointer;background:#f6faf5;border:1px solid #c7d5c8;border-left:5px solid var(--c,#426c61);border-radius:10px;padding:8px 12px;margin-top:6px;color:var(--ink)}
+.hit b{font-family:"Yu Mincho","Noto Serif JP",serif;font-size:20px}
+.hit .hr{font-size:12px;color:var(--sub)}.hit .hc{font-size:12px}
+.hit em{margin-left:auto;font-style:normal;font-size:12px;color:var(--kei);font-weight:bold}
+.hitterm{background:#e9eee3;border-radius:10px;padding:8px 12px;margin-top:6px;font-size:13px}
+.askai{margin-top:10px;background:#f2f5ee;border-radius:12px;padding:10px 12px;font-size:13px}
+.askai .lead2{font-weight:bold;margin:0 0 6px}
+.askai .msg{background:#fff;border:1px dashed #b7c6b9;border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.6}
+.askai .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.askai button{font:inherit;font-size:13px;cursor:pointer;border:0;background:var(--kei);color:#fff;border-radius:20px;padding:6px 14px}
+.askai a{font-size:13px}
+.askai .tiny{font-size:11px;color:var(--sub);margin:6px 0 0}
+.askai .st{font-size:12px;color:#345849}
+@media(max-width:640px){
+ .intro{padding-right:96px}.cover{width:92px;top:0}
+ .ic{width:26px;height:26px}
+ .finder{padding:12px}.hp{width:40px;height:40px}.fhead h2{font-size:16px}
+ #q{font-size:17px}
+}
+
+.cnav{position:sticky;top:0;z-index:15;display:none;gap:6px;overflow-x:auto;scrollbar-width:none;background:rgba(247,244,235,.96);backdrop-filter:blur(4px);padding:8px 14px;margin:0 -14px;border-bottom:1px solid var(--line)}
+.cnav::-webkit-scrollbar{display:none}
+.cnav a{flex:none;text-decoration:none;font-size:14px;font-weight:bold;color:var(--c,#426c61);background:#fff;border:1.5px solid var(--c,#c7d5c8);border-radius:16px;padding:3px 12px;font-family:"Yu Mincho","Noto Serif JP",serif}
+.cnav a.c-q,.cnav a.c-t{font-family:inherit;font-size:12px;font-weight:normal;color:var(--sub);border-color:#c7d5c8}
+.cnav a.now{background:var(--c,#426c61);color:#fff}
+.cnav a.c-q.now,.cnav a.c-t.now{background:#62736c;color:#fff}
+.country,.finder,#terms{scroll-margin-top:56px}
+.askai[hidden]{display:none}
+.poslab{display:block;font-size:12.5px;font-weight:bold;margin-top:4px}.poslab span{font-weight:normal;color:var(--sub);font-size:11.5px}
+#pos{display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:7px 10px;border:1.5px solid #b7c6b9;border-radius:10px;background:#fff;color:var(--ink)}
+#pos:focus{outline:3px solid #e0b867;outline-offset:1px}
+@media(max-width:1020px){.cnav{display:flex}}
+
+/* 帰山 */
+.map.duo{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);grid-template-areas:"ryu sou";gap:22px;align-items:start}
+#ryu{grid-area:ryu;border-color:#5f8a6e;background:#eef5ef}#ryu .k,#ryu .ic{color:#5f8a6e}.ryub{background:#5f8a6e}#ryu .p.hero{border-color:#5f8a6e}
+#sou{grid-area:sou;border-color:#b07a3a;background:#fbf4ea;border-width:2px}#sou .k,#sou .ic{color:#b07a3a}.soub{background:#b07a3a}
+.kids{text-align:center;font-size:12px;color:#b07a3a;font-weight:bold;margin:2px 0 6px}
+.chips.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.identity{margin-top:12px;background:#fff;border:1px dashed #b9c9bf;border-radius:10px;padding:2px 12px;font-size:13px}
+.identity summary{cursor:pointer;padding:8px 0;font-weight:bold;font-size:13px}
+.identity p{margin:0 0 10px}
+@media(max-width:1020px){.map.duo{grid-template-columns:minmax(0,1fr);grid-template-areas:"ryu" "sou"}}
+@media(max-width:640px){.map.duo .country{display:block;margin:0}.chips.three .p .n{font-size:15px}.chips.three .p{padding:5px 6px}}
+
+.chips .p.king .j:before{content:"王 · "}
+</style></head><body>
+<header><span class="brand">十二国記 · Audibleのお供</span><span class="tag">かなとの聴くメモ</span></header>
+<main>
+<section class="intro"><svg class="cover" viewBox="0 0 120 100" aria-hidden="true"><g stroke="#819888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 76 L40 31 L65 69 L84 43 L111 78" fill="#e4e8dc"/><path d="M29 48 L40 31 L51 48 L43 44 L38 49Z" fill="#f7f4eb"/><path d="M17 80 Q42 67 65 77 Q89 84 107 77" fill="#d8dfd0"/><path d="M61 94 Q42 86 60 80 Q76 74 64 65" fill="none" stroke="#aa9c80" stroke-width="2"/><path d="M18 91 Q38 94 47 92 M77 92 Q94 91 106 88" fill="none" stroke="#c4cbbd"/></g></svg>
+<div class="eyebrow">人物と国の関係図</div>
+<h1>帰山<small>きざん</small></h1>
+<p class="lead">旅先で会う２人と、奏国の家族をひと目に。</p>
+<div class="howto">
+<span><b>大きい名前</b>＝中心になる人</span>
+<span><b>名前を押す</b>と説明と、つながりのある人が光ります</span>
+<span><span class="alias" style="font-size:11px;background:#fff3c9;border:1px solid #e6cf86;border-radius:6px;padding:0 5px">＝</span> 別の呼び名</span>
+</div>
+<p class="small" style="margin-top:6px">『華胥の幽夢（かしょのゆめ）』に入っている短編。物語の結論や、国の行く末は伏せています。</p>
+</section>
+<section class="finder" id="finder">
+<div class="fhead"><svg class="hp" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 30v-6a15 15 0 0 1 30 0v6"/><rect x="6" y="28" width="8" height="13" rx="3" fill="#fffdf8"/><rect x="34" y="28" width="8" height="13" rx="3" fill="#fffdf8"/><path d="M20 20c1.5-1.5 3-1.5 4 0M27 18c2.5-2.5 5-2.5 6.5 0" stroke-width="1.8" opacity=".7"/></svg>
+<div><h2>聴こえた名前で、さがす</h2><p class="small">漢字が分からなくても大丈夫。聴こえたまま、ひらがなで入れてください。</p></div></div>
+<input id="q" type="search" placeholder="例：たくろうくん" autocomplete="off" enterkeyhint="search" aria-label="聴こえた名前や言葉">
+<div class="ex">たとえば <button type="button" data-q="たくろうくん">たくろうくん</button><button type="button" data-q="そうりん">そうりん</button><button type="button" data-q="りたつ">りたつ</button><button type="button" data-q="ふうかん">ふうかん</button></div>
+<div id="results" aria-live="polite"></div>
+<div id="askai" class="askai" hidden>
+<p class="lead2"></p>
+<p class="small" style="margin:8px 0 4px">AIに送る文</p>
+<div class="msg"></div>
+<div class="acts"><button type="button" class="cp">この文をコピー</button><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPTを開く ↗</a><span class="st" role="status"></span></div>
+<p class="tiny">「先の展開は教えないで」と添えておくと、ネタバレを避けて答えてもらいやすくなります。AIの答えにも間違いはあるので、聴いた場面と照らし合わせて、思い出す手がかりに。</p>
+</div>
+</section>
+<div class="map duo" id="map">
+<svg id="lines" aria-hidden="true"></svg>
+<section class="country" id="ryu" data-c="柳">
+<h2><svg class="ic" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c4 2 6 4 6 8M12 4c3 3 4 6 3 10M18 4c-1 4 0 8 3 12M24 4c-3 3-4 7-3 12"/><path d="M4 28h24"/><path d="M15 14v14"/></svg><span class="k">柳</span><span>りゅう</span><span class="nowbadge ryub">はじまりの舞台</span></h2>
+<p class="note">利広と風漢が顔を合わせる国。会話に出てくる国と、いま２人がいる国を分けると聴きやすくなります。</p>
+<div class="pair">
+<button class="p big hero" data-id="rikou" data-rel="fuukan rikou2" data-desc="各地を旅する人。『図南の翼』で、珠晶の旅に関わっていた人。"><span class="n">利広</span><span class="r">りこう</span><span class="j">各地を旅する人</span></button>
+<div class="bond">顔なじみ</div>
+<button class="p big" data-id="fuukan" data-rel="rikou" data-desc="旅先で顔を合わせ、利広と国や王のことを語り合う。"><span class="n">風漢</span><span class="r">ふうかん</span><span class="j">利広の話し相手</span></button>
+</div>
+<details class="identity"><summary>風漢は誰の別名？〈正体に触れます〉</summary><p>風漢は、雁国（えんこく）の王・<strong>尚隆（しょうりゅう）</strong>が使う別名。「延王（えんおう）」も同じ人を指します。</p></details>
+</section>
+<section class="country" id="sou" data-c="奏">
+<h2><svg class="ic" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="3"/><path d="M7 14h18M7 18h18"/><path d="M9 21v4M23 21v4"/></svg><span class="k">奏</span><span>そう</span><span class="nowbadge soub">利広の家族</span></h2>
+<p class="note">利広の家族と身分に触れます。名前が出てきてからどうぞ。国名は「奏」、王と麒麟の呼び名は「宗」。</p>
+<div class="pair">
+<button class="p big king" data-id="senshin" data-rel="meiki ritatsu rikou2 bunki shoushou" data-desc="奏国の王。"><span class="n">先新</span><span class="r">せんしん</span><span class="j">宗王</span><span class="jy">そうおう</span></button>
+<div class="bond">夫婦</div>
+<button class="p big" data-id="meiki" data-rel="senshin ritatsu rikou2 bunki" data-desc="先新の妻。"><span class="n">明嬉</span><span class="r">めいき</span><span class="j">后妃</span><span class="jy">こうひ</span></button>
+</div>
+<div class="kids">↓ ２人の子どもたち ↓</div>
+<div class="chips three">
+<button class="p " data-id="ritatsu" data-rel="rikou2 bunki" data-desc="利広の兄。"><span class="n">利達</span><span class="r">りたつ</span><span class="j">長男・太子</span><span class="jy">ちょうなん・たいし</span></button>
+<button class="p " data-id="rikou2" data-rel="rikou ritatsu bunki" data-desc="卓朗君（たくろうくん）とも呼ばれる。柳で風漢と会う、あの利広。"><span class="n">利広</span><span class="r">りこう</span><span class="j">次男・太子</span><span class="jy">じなん・たいし</span><span class="alias">＝卓朗君</span></button>
+<button class="p " data-id="bunki" data-rel="ritatsu rikou2" data-desc="利達・利広の妹。"><span class="n">文姫</span><span class="r">ぶんき</span><span class="j">娘・公主</span><span class="jy">むすめ・こうしゅ</span></button>
+</div>
+<div class="tier"><h3>奏の麒麟</h3><div class="chips">
+<button class="p kirin" data-id="shoushou" data-rel="senshin" data-desc="先新を王に選んだ麒麟。家族とは別のつながりで、奏国の王を支える。"><span class="n">昭彰</span><span class="r">しょうしょう</span><span class="j">宗麟</span><span class="jy">そうりん</span></button>
+</div></div>
+</section>
+</div>
+<section class="section" id="terms"><div class="eyebrow">人の名前？ それとも呼び名？</div><h2>よく出てくる言葉</h2>
+<div class="terms"><div class="term"><strong>宗王・宗麟（そうおう・そうりん）</strong><br>奏国の王と麒麟の呼び名。宗王＝先新 ／ 宗麟＝昭彰。</div><div class="term"><strong>太子・公主（たいし・こうしゅ）</strong><br>ここでは、王の息子・娘を指す身分の呼び名。太子＝利達・利広 ／ 公主＝文姫。</div><div class="term"><strong>卓朗君（たくろうくん）</strong><br>利広の別の呼び名。</div><div class="term"><strong>后妃（こうひ）</strong><br>王の妻。この話では明嬉。</div><div class="term"><strong>柳国（りゅうこく）</strong><br>利広と風漢が会う場所。</div><div class="term"><strong>奏国（そうこく）</strong><br>先新たちの国。国名は「奏」、王と麒麟の呼び名は「宗」。</div></div></section>
+<p class="small disclaimer">聴きながら整理した、私の十二国記メモです。登場人物は一部を紹介しています。間違いやネタバレがあるかもしれません。参考程度に楽しんでいただければ幸いです。</p>
+</main>
+<footer>かなとの聴くメモ · 非公式ファンガイド<br>小野不由美『華胥の幽夢』収録「帰山」より。著者・出版社・Audibleの公式ページではありません。</footer>
+
+<div id="panel" role="dialog" aria-live="polite" aria-label="人物の説明"><button class="x" type="button" aria-label="閉じる">×</button><div id="pbody"></div></div>
+
+<script>
+(function(){
+const map=document.getElementById('map'),svg=document.getElementById('lines');
+const people={};document.querySelectorAll('.p[data-id]').forEach(b=>people[b.dataset.id]=b);
+const colors={'柳':'#5f8a6e','奏':'#b07a3a'};
+
+/* 国をまたぐ線（主な流れだけ） */
+const links=[];
+const labs=links.map(l=>{const d=document.createElement('div');d.className='lab';d.textContent=l.label;d.style.color=l.color;map.appendChild(d);return d;});
+
+function draw(){
+ const m=map.getBoundingClientRect();
+ svg.querySelectorAll('path.ln').forEach(p=>p.remove());
+ links.forEach((l,i)=>{
+  const el=k=>k[0]==='#'?document.querySelector(k):people[k];
+  if(!getComputedStyle(svg).display||getComputedStyle(svg).display==='none')return;
+  let a=el(l.from).getBoundingClientRect(),b=el(l.to).getBoundingClientRect();
+  if(l.box&&!((a.right<b.left-20)||(b.right<a.left-20))){b=document.getElementById('en').getBoundingClientRect();}
+  else if(l.box){const y=b.top+b.height/2;a={left:a.left,right:a.right,top:y-1,bottom:y+1,width:a.width,height:2};}
+  let x1,y1,x2,y2,c1x,c1y,c2x,c2y;
+  const horiz=(a.right<b.left-20)||(b.right<a.left-20);
+  if(horiz){
+   const ltr=a.right<b.left;
+   x1=(ltr?a.right:a.left)-m.left;y1=a.top+a.height/2-m.top;
+   x2=(ltr?b.left:b.right)-m.left;y2=b.top+b.height/2-m.top;
+   const dx=(x2-x1)*.5;c1x=x1+dx;c1y=y1;c2x=x2-dx;c2y=y2;
+  }else{
+   const down=a.top<b.top;
+   x1=a.left+a.width/2-m.left;y1=(down?a.bottom:a.top)-m.top;
+   x2=b.left+b.width/2-m.left;y2=(down?b.top:b.bottom)-m.top;
+   const dy=(y2-y1)*.5;c1x=x1;c1y=y1+dy;c2x=x2;c2y=y2-dy;
+  }
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('class','ln');p.setAttribute('d',`M${x1} ${y1}C${c1x} ${c1y} ${c2x} ${c2y} ${x2} ${y2}`);
+  p.setAttribute('fill','none');p.setAttribute('stroke',l.color);p.setAttribute('stroke-width',l.width);p.setAttribute('stroke-linecap','round');
+  p.setAttribute('marker-end',`url(#${l.marker})`);if(l.both)p.setAttribute('marker-start',`url(#${l.marker})`);
+  svg.appendChild(p);
+  /* ラベルは曲線の中点 */
+  const t=.5,mx=(1-t)**3*x1+3*(1-t)**2*t*c1x+3*(1-t)*t*t*c2x+t**3*x2,my=(1-t)**3*y1+3*(1-t)**2*t*c1y+3*(1-t)*t*t*c2y+t**3*y2;
+  labs[i].style.left=mx+'px';labs[i].style.top=my+'px';
+ });
+}
+window.addEventListener('resize',draw);window.addEventListener('load',draw);
+if(document.fonts)document.fonts.ready.then(draw);draw();
+
+/* 押したら説明＋つながりを光らせる */
+const panel=document.getElementById('panel'),pbody=document.getElementById('pbody');
+let current=null;
+function relsOf(id){const s=new Set((people[id].dataset.rel||'').split(/\s+/).filter(Boolean));
+ Object.values(people).forEach(b=>{if((b.dataset.rel||'').split(/\s+/).includes(id))s.add(b.dataset.id)});return [...s].filter(x=>people[x]);}
+function select(id){
+ if(current===id){clear();return;}
+ current=id;const b=people[id];const rels=relsOf(id);
+ map.classList.add('focus');
+ Object.values(people).forEach(x=>x.classList.remove('on','rel'));
+ b.classList.add('on');rels.forEach(r=>people[r].classList.add('rel'));
+ labs.forEach((lb,i)=>lb.classList.toggle('on',links[i].from===id||links[i].to===id||(links[i].on||[]).includes(id)));
+ const c=b.closest('.country').dataset.c;
+ const alias=b.querySelector('.alias');
+ pbody.innerHTML=`<div><span class="pn">${b.querySelector('.n').textContent}</span><span class="pr">${b.querySelector('.r').textContent}</span><span class="pc" style="background:${colors[c]}">${c}</span></div>`+
+  `<span class="pj">${b.querySelector('.j').textContent}${b.querySelector('.jy')?`<small style="display:block;font-size:11px;color:#62736c;line-height:1.3">${b.querySelector('.jy').textContent}</small>`:''}</span>${alias?` <span class="pj" style="background:#fff3c9">${alias.textContent}</span>`:''}`+
+  `<p class="pd">${b.dataset.desc||''}</p>`+
+  (rels.length?`<div class="pl">つながり：${rels.map(r=>`<button type="button" data-go="${r}">${people[r].querySelector('.n').textContent}</button>`).join('')}</div>`:'');
+ panel.classList.add('show');
+}
+window.selectPerson=id=>{if(current!==id)select(id);people[id].scrollIntoView({block:'center',behavior:'smooth'});};
+function clear(){current=null;map.classList.remove('focus');Object.values(people).forEach(x=>x.classList.remove('on','rel'));labs.forEach(l=>l.classList.remove('on'));panel.classList.remove('show');}
+Object.values(people).forEach(b=>{b.type='button';b.addEventListener('click',e=>{e.stopPropagation();select(b.dataset.id)})});
+pbody.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.stopPropagation();const t=people[g.dataset.go];select(g.dataset.go);t.scrollIntoView({block:'center',behavior:'smooth'});}});
+panel.querySelector('.x').addEventListener('click',clear);
+panel.addEventListener('click',e=>e.stopPropagation());
+document.addEventListener('click',()=>{if(current)clear()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')clear()});
+})();
+
+/* 質問のコピー（v2と同じ） */
+async function copyQuestion(text){
+ if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return true;}catch{}}
+ const box=document.createElement('textarea');box.value=text;box.setAttribute('readonly','');box.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(box);box.select();let ok=false;try{ok=document.execCommand('copy');}catch{}box.remove();return ok;
+}
+
+
+/* 聴こえた名前でさがす */
+(function(){
+const toH=t=>t.replace(/[\u30a1-\u30f6]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60)).replace(/[\s・（）()　＝「」『』]/g,'').toLowerCase();
+const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const people=[...document.querySelectorAll('.p[data-id]')].map(b=>{
+ const jy=b.querySelector('.jy');const rts=jy?[jy.textContent,...jy.textContent.split(/[\s・の]+/)]:[];
+ const jtxt=b.querySelector('.j').textContent;
+ const al=b.querySelector('.alias');
+ return {id:b.dataset.id,name:b.querySelector('.n').textContent,read:b.querySelector('.r').textContent,job:jtxt,
+  c:b.closest('.country').dataset.c,keys:[b.querySelector('.n').textContent,b.querySelector('.r').textContent,jtxt,rts.join(''),...rts,al?al.textContent:''].map(toH).filter(Boolean)};
+});
+const terms=[...document.querySelectorAll('.term')].map(t=>({html:t.innerHTML,key:toH(t.querySelector('strong').textContent)}));
+const colors={'柳':'#5f8a6e','奏':'#b07a3a'};
+const q=document.getElementById('q'),out=document.getElementById('results'),ai=document.getElementById('askai'),msgBox=ai.querySelector('.msg');
+let last='';
+const book='『華胥の幽夢』の「帰山」';
+function makeMsg(){return `今、Audibleで${book}を聴いている途中です。先の展開は教えないでください。「${last}」って誰（何）ですか？`;}
+function msgUpdate(){msgBox.textContent=makeMsg();ai.querySelector('.st').textContent='';}
+ai.querySelector('.cp').addEventListener('click',async()=>{const ok2=await copyQuestion(makeMsg());ai.querySelector('.st').textContent=ok2?'コピーしました':'コピーできませんでした。文字を選んでコピーしてください';});
+function run(){
+ const raw=q.value.trim(),k=toH(raw);
+ if(!k){out.innerHTML='';ai.hidden=true;return;}
+ const ok=key=>k.length>=2?key.includes(k):key===k;
+ const ph=people.filter(p=>p.keys.some(ok)).slice(0,6);
+ const th=terms.filter(t=>ok(t.key)).slice(0,3);
+ let h=ph.map(p=>`<button type="button" class="hit" data-go="${p.id}" style="--c:${colors[p.c]}"><b>${p.name}</b><span class="hr">${p.read}</span><span class="hc">${p.c} · ${esc(p.job)}</span><em>図で見る ›</em></button>`).join('');
+ h+=th.map(t=>`<div class="hitterm">${t.html}</div>`).join('');
+ const none=!ph.length&&!th.length;
+ out.innerHTML=h;
+ ai.hidden=false;
+ ai.querySelector('.lead2').textContent=none?'この図には見つかりませんでした。AIに聞いてみましょう。':'もっと知りたいときは、AIに聞いてみる';
+ last=raw;msgUpdate();
+}
+q.addEventListener('input',run);
+document.querySelectorAll('.ex button').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();q.value=b.dataset.q;run();}));
+out.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;e.stopPropagation();window.selectPerson(g.dataset.go);});
+document.getElementById('finder').addEventListener('click',e=>e.stopPropagation());
+})();
+
+
+</script></body></html>
